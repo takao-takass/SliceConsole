@@ -1,0 +1,30 @@
+﻿using System.IO;
+using System.IO.Compression;
+
+namespace SliceConsole
+{
+    class Program
+    {
+
+        private static readonly string VideoDirectoryPath = @"video";
+
+        static void Main()
+        {
+            var movies = Directory.GetFiles(VideoDirectoryPath, "*.mp4", SearchOption.AllDirectories);
+            var capture = new Capture() { SpanMsec = 1000 };
+            var i = 0;
+            foreach(var movie in movies)
+            {
+                System.Console.WriteLine($"処理中.. {++i}/{movies.Length}");
+                capture.FilePath = $"{movie}";
+                var directory = capture.Start();
+                if(directory is not null)
+                {
+                    //ZipFile.CreateFromDirectory(directory, $"{directory}.zip");
+                    File.Delete(movie);
+                    //Directory.Delete(directory,true);
+                }
+            }
+        }
+    }
+}
