@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.IO.Compression;
 
 namespace SliceConsole
 {
@@ -18,12 +17,11 @@ namespace SliceConsole
                 System.Console.WriteLine($"処理中.. {++i}/{movies.Length}");
                 capture.FilePath = $"{movie}";
                 var directory = capture.Start();
-                if(directory is not null)
+                if (directory is not null)
                 {
-                    //ZipFile.CreateFromDirectory(directory, $"{directory}.zip");
                     File.Delete(movie);
-                    //Directory.Delete(directory,true);
                 }
+
             }
         }
     }
