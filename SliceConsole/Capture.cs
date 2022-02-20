@@ -3,6 +3,7 @@ using System.IO;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 
+#nullable enable
 namespace SliceConsole
 {
     class Capture
@@ -23,8 +24,8 @@ namespace SliceConsole
             using (var capture = new VideoCapture(FilePath))
             {
 
-                var fileName = Path.GetFileName(FilePath);
-                var directoryName = $"{Path.GetDirectoryName(FilePath)}/{fileName.Replace(".mp4",String.Empty)}";
+                var fileName = Path.GetFileName(FilePath).Replace(".mp4", String.Empty);
+                var directoryName = $"{Path.GetDirectoryName(FilePath)}/{fileName}";
                 Directory.CreateDirectory(directoryName);
 
                 var frameCount = capture.Get(VideoCaptureProperties.FrameCount);
@@ -40,7 +41,7 @@ namespace SliceConsole
                     {
                         break;
                     }
-                    BitmapConverter.ToBitmap(mat).Save($@"{directoryName}/cap_{currentMsec / 500}.png");
+                    BitmapConverter.ToBitmap(mat).Save($@"{directoryName}/{fileName}_{currentMsec / 100}.png");
                 }
 
                 return directoryName;
