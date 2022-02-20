@@ -15,7 +15,7 @@ namespace SliceConsole
             foreach(var movie in movies)
             {
                 System.Console.WriteLine($"処理中.. {++i}/{movies.Length}");
-                var capture = new Capture() { SpanMsec = 500 };
+                var capture = new Capture() { SpanMsec = 250 };
                 capture.FilePath = $"{movie}";
                 var directory = capture.Start();
                 if (directory is not null)
