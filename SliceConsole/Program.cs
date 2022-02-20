@@ -18,10 +18,11 @@ namespace SliceConsole
                 var capture = new Capture() { SpanMsec = 500 };
                 capture.FilePath = $"{movie}";
                 var directory = capture.Start();
-                if(directory is not null)
+                if (directory is not null)
                 {
                     File.Delete(movie);
                 }
+
             }
         }
     }
